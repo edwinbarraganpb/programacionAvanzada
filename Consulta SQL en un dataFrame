@@ -1,0 +1,20 @@
+import pandas as pd
+#Ejemplo de consulta SQL
+#SELECT E.lastname, count(O.OrderID) FROM Employees as E
+#LEFT JOIN Orders as O On E.EmployeeID = O.EmployeeID
+#GROUP BY E.EmployeeID, E.lastname
+
+orders = pd.DataFrame({
+    'OrderID':[101,102,103,104,105,106],
+    'EmployeeID': [1,2,3,1,2,8]
+  }                       
+)
+employees =  pd.DataFrame({
+    'EmployeeID':[1,2,3,4,5,8],
+    'LastName': ['Davolio','Ana', 'Jaime','Leon','Amelia','Angela']
+  }                       
+)
+#merge es el JOIN de la consulta
+resultados = pd.merge(employees, orders, on = 'EmployeeID', how='left')
+
+print(resultados['OrderID'].groupby(resultados['EmployeeID']).s)
