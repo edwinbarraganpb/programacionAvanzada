@@ -1,0 +1,20 @@
+#Manejo de DataFrame
+
+import pandas as pd
+
+data = {
+    'Nombre': ['Jaime','Ana','Juan','Stiven'],
+    'Edad': [25,17,22,43],
+    'Ciudad':['Medellin','Medellin','Bogota','Cali']        
+}
+
+miInfo = pd.DataFrame(data)
+print(miInfo)
+
+#inspeccion de datos
+miInfo.head(2)
+miInfo.tail(2)
+miInfo.info()
+
+miInfo.describe()
+miInfo['Edad'].mean()
