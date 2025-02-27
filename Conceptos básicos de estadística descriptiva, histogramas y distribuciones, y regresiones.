@@ -1,0 +1,65 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
+from sklearn.linear_model import LinearRegression
+
+class EstadisticaYMatematica:
+    def __init__(self):
+        # Datos de ejemplo
+        self.data = pd.DataFrame({
+            'Edad': [23, 23, 27, 27, 39, 41, 47, 49, 50, 52, 54, 54, 56, 57, 58, 58],
+            'Salario': [20, 24, 27, 29, 39, 41, 47, 49, 50, 52, 54, 54, 56, 57, 58, 58]
+        })
+
+    def estadistica_descriptiva(self):
+        print("Estadística Descriptiva:")
+        print("Media de Edad:", self.data['Edad'].mean())
+        print("Mediana de Edad:", self.data['Edad'].median())
+        print("Desviación estándar de Edad:", self.data['Edad'].std())
+        print("Media de Salario:", self.data['Salario'].mean())
+        print("Mediana de Salario:", self.data['Salario'].median())
+        print("Desviación estándar de Salario:", self.data['Salario'].std())
+
+    def histograma(self):
+        plt.figure(figsize=(10, 5))
+        sns.histplot(self.data['Edad'], kde=True, bins=10)
+        plt.title('Histograma de Edades')
+        plt.xlabel('Edad')
+        plt.ylabel('Frecuencia')
+        plt.show()
+
+    def distribucion(self):
+        plt.figure(figsize=(10, 5))
+        sns.kdeplot(self.data['Salario'], shade=True)
+        plt.title('Distribución de Salarios')
+        plt.xlabel('Salario')
+        plt.ylabel('Densidad')
+        plt.show()
+
+    def regresion_lineal(self):
+        X = self.data[['Edad']]
+        y = self.data['Salario']
+
+        model = LinearRegression()
+        model.fit(X, y)
+
+        print("Regresión Lineal:")
+        print("Coeficiente (pendiente):", model.coef_[0])
+        print("Intercepto:", model.intercept_)
+
+        plt.figure(figsize=(10, 5))
+        plt.scatter(X, y, color='blue')
+        plt.plot(X, model.predict(X), color='red', linewidth=2)
+        plt.title('Regresión Lineal: Edad vs Salario')
+        plt.xlabel('Edad')
+        plt.ylabel('Salario')
+        plt.show()
+
+# Uso de la clase
+estadistica = EstadisticaYMatematica()
+estadistica.estadistica_descriptiva()
+estadistica.histograma()
+estadistica.distribucion()
+estadistica.regresion_lineal()
