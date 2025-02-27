@@ -1,0 +1,23 @@
+import pandas as pd
+#Rango intercuartílico
+
+valoresX = pd.DataFrame({
+    'data' : [5,4,5,5,4,3,5,1,5,5,5,4,5,1,5,5,5,5,4,1,5],
+  }                       
+)
+Q1 = valoresX['data'].quantile(0.25)
+Q3 = valoresX['data'].quantile(0.75)
+RQ = Q3 - Q1
+
+#MAD (Desviación media absoluta)
+media = valoresX['data'].mean()
+desviaciones_absolutas = (valoresX['data'] - media).abs()
+MAD = desviaciones_absolutas.mean()
+
+print(valoresX.describe())
+print("Cuartil 3",Q3)
+print("Cuartil 1",Q1)
+print("Rango intercuartílico",RQ)
+print("Desviación media absoluta", MAD)
+
+
